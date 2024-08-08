@@ -66,7 +66,8 @@ router.delete("/items/:id", async (req, res) => {
         const item = await Item.findById(req.params.id);
         if (!item) return res.status(404).json({ message: "Item not found" });
 
-        await item.remove();
+        // await item.remove();
+        await item.deleteOne();
         res.json({ message: "Item deleted" });
     } catch (error) {
         res.status(500).json({ message: error.message });
